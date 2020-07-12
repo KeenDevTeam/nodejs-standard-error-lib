@@ -1,6 +1,6 @@
-# NodeJS module (TypeScript)
+# SpeedUP SMS notification
 
-Try to describe your module briefly here. This is the first part that takes the user's attention.
+SpeedUP standard error library.
 
 [![NPM version][npm-image]][npm-url]
 [![NPM downloads][downloads-image]][downloads-url]
@@ -10,10 +10,10 @@ Try to describe your module briefly here. This is the first part that takes the 
 ```sh
 
 # NPM
-npm i your-module-name --save
+npm i @speedup/error --save
 
 # Yarn
-yarn install your-module-name
+yarn install @speedup/error
 
 ```
 
@@ -21,12 +21,20 @@ yarn install your-module-name
 
 ```js
 
-const MyModule = require('your-module-name');
+const { ApplicationError, HttpError } = require('@speedup/error').default;
 
-const instance = new MyModule({
-    /**
-     * Your configuration
-     */
+throw new ApplicationError({
+    code: 'E_NOT_FOUND'
+});
+
+```
+
+```ts
+
+import { ApplicationError, HttpError } from '@speedup/error';
+
+throw new ApplicationError({
+    code: 'E_NOT_FOUND'
 });
 
 ```
@@ -37,7 +45,7 @@ And you're good to go!
 
 MIT
 
-[npm-image]: https://img.shields.io/npm/v/@itemsjs/config.svg?color=orange
-[npm-url]: https://npmjs.org/package/@itemsjs/config
-[downloads-image]: https://img.shields.io/npm/dt/@itemsjs/config.svg
-[downloads-url]: https://npmjs.org/package/@itemsjs/config
+[npm-image]: https://img.shields.io/npm/v/@speedup/error.svg?color=orange
+[npm-url]: https://npmjs.org/package/@speedup/error
+[downloads-image]: https://img.shields.io/npm/dt/@speedup/error.svg
+[downloads-url]: https://npmjs.org/package/@speedup/error
