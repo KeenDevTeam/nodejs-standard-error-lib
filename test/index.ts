@@ -16,10 +16,10 @@ describe('SpeedUP|Standard-Error-Lib', () => {
 
     describe('integrity', () => {
 
-        it('should contain 3 properties', () => {
+        it('should contain 4 properties', () => {
 
             expect(mdl).to.be.an('object');
-            expect(Object.keys(mdl)).to.have.lengthOf(3);
+            expect(Object.keys(mdl)).to.have.lengthOf(4);
         });
     });
 
