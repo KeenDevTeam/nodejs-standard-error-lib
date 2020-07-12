@@ -2,6 +2,8 @@
  * Module entry point
  */
 
-import * as lib from './lib';
+import { ApplicationError } from './application_error';
+import { ErrorBase } from './error_base';
+import { HttpError } from './http_error';
 
-export default { ...lib }
+export default { ApplicationError, ErrorBase, HttpError }
