@@ -21,7 +21,7 @@ yarn install @speedup/error
 
 ```js
 
-const { ApplicationError, HttpError } = require('@speedup/error').default;
+const { ApplicationError, HttpError } = require('@speedup/error');
 
 throw new ApplicationError({
     code: 'E_NOT_FOUND'

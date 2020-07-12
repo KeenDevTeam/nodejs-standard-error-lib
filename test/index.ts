@@ -5,7 +5,7 @@
 import 'mocha';
 import { expect } from 'chai';
 
-import mdl from '../src';
+import * as mdl from '../src';
 import { ApplicationError } from '../src/application_error';
 import { HttpError } from '../src/http_error';
 import { getDefaultErrorMessage, getEitherDefaultOrPredefinedErrorMessage } from '../src/util';

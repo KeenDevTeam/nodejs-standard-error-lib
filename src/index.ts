@@ -6,4 +6,4 @@ import { ApplicationError } from './application_error';
 import { ErrorBase } from './error_base';
 import { HttpError } from './http_error';
 
-export default { ApplicationError, ErrorBase, HttpError }
+export { ApplicationError, ErrorBase, HttpError }
