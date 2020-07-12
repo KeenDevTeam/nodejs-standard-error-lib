@@ -122,19 +122,12 @@ describe('SpeedUP|Standard-Error-Lib', () => {
 
         it('should throw E_NO_CONFIG exception', () => {
 
-            expect(() => new MissingArgumentError()).throws('E_NO_CONFIG');
+            expect(() => new MissingArgumentError()).throws('E_ARG_NAME');
         });
 
         it('should create an MissingArgumentError', () => {
 
-            const missingArgumentError = new MissingArgumentError({
-                code: 'E_MISSING_ARG',
-                argumentName: 'myArg',
-                error: new ApplicationError({
-                    code: 'E_NO_APP',
-                    message: 'No Application Found'
-                })
-            });
+            const missingArgumentError = new MissingArgumentError('myArg');
 
             expect(missingArgumentError)
                 .to.have.property('argumentName').that.is.a('string').which.is.eq('myArg');

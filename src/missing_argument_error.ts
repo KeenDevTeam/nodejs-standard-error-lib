@@ -22,16 +22,16 @@ export class MissingArgumentError extends ErrorBase {
      */
     protected readonly argumentName: string;
 
-    constructor(config?: MissingArgumentErrorParameters) {
+    constructor(argumentName?: string) {
 
-        if (!config) { throw new Error('E_NO_CONFIG'); }
+        if (!argumentName) { throw new Error('E_ARG_NAME'); }
 
         super({
-            ...(config as ErrorParameters),
-            message: `\'${config!.argumentName}\' is not provided (null or undefined).`
+            code: 'E_NO_ARG',
+            message: `\'${argumentName}\' is not provided (null or undefined).`
         });
 
-        this.argumentName = config!.argumentName;
+        this.argumentName = argumentName;
 
         // set stacktrace
         Error.captureStackTrace(this, MissingArgumentError);
