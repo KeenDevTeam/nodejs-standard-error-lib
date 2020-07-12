@@ -8,6 +8,7 @@ import { expect } from 'chai';
 import * as mdl from '../src';
 import { ApplicationError } from '../src/application_error';
 import { HttpError } from '../src/http_error';
+import { MissingArgumentError } from '../src/missing_argument_error';
 import { getDefaultErrorMessage, getEitherDefaultOrPredefinedErrorMessage } from '../src/util';
 
 
@@ -101,7 +102,7 @@ describe('SpeedUP|Standard-Error-Lib', () => {
             expect(() => new HttpError()).throws('E_NO_CONFIG');
         });
 
-        it('should create an ApplicationError', () => {
+        it('should create an HttpError', () => {
 
             const httpError = new HttpError({
                 statusCode: 400,
@@ -114,6 +115,31 @@ describe('SpeedUP|Standard-Error-Lib', () => {
                 .to.have.property('statusCode').that.is.a('number').which.is.eq(400);
             expect(httpError)
                 .to.have.property('statusMessage').that.is.a('string').which.is.eq('BAD_REQUEST');
+        });
+    });
+
+    describe('MissingArgumentError', () => {
+
+        it('should throw E_NO_CONFIG exception', () => {
+
+            expect(() => new MissingArgumentError()).throws('E_NO_CONFIG');
+        });
+
+        it('should create an MissingArgumentError', () => {
+
+            const missingArgumentError = new MissingArgumentError({
+                code: 'E_MISSING_ARG',
+                argumentName: 'myArg',
+                error: new ApplicationError({
+                    code: 'E_NO_APP',
+                    message: 'No Application Found'
+                })
+            });
+
+            expect(missingArgumentError)
+                .to.have.property('argumentName').that.is.a('string').which.is.eq('myArg');
+            expect(missingArgumentError)
+                .to.have.property('message').that.is.a('string').which.is.eq('\'myArg\' is not provided (null or undefined).');
         });
     });
 
