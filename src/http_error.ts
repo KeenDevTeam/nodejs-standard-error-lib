@@ -50,5 +50,8 @@ export class HttpError extends ErrorBase {
 
         // set stacktrace
         Error.captureStackTrace(this, HttpError);
+
+        // Set prototype to make instanceOf enabled
+        Object.setPrototypeOf(this, HttpError.prototype);
     }
 }

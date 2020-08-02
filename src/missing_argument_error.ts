@@ -35,5 +35,8 @@ export class MissingArgumentError extends ErrorBase {
 
         // set stacktrace
         Error.captureStackTrace(this, MissingArgumentError);
+
+        // Set prototype to make instanceOf enabled
+        Object.setPrototypeOf(this, MissingArgumentError.prototype);
     }
 }

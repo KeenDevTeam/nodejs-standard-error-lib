@@ -72,6 +72,19 @@ describe('SpeedUP|Standard-Error-Lib', () => {
             expect(appError)
                 .to.have.property('message').that.is.a('string').which.is.eq('NOT FOUND');
         });
+
+        it('should be detectable via instanceOf', () => {
+
+            const appError = new ApplicationError({
+                code: 'E_NOT_FOUND',
+                error: new ApplicationError({
+                    code: 'E_INHERITED'
+                }),
+                message: 'NOT FOUND'
+            });
+
+            expect(appError).instanceOf(ApplicationError);
+        });
     });
 
     describe('ApplicationError', () => {
@@ -92,6 +105,19 @@ describe('SpeedUP|Standard-Error-Lib', () => {
                 .to.have.property('code').that.is.a('string').which.is.eq('E_NOT_FOUND');
             expect(appError)
                 .to.have.property('message').that.is.a('string').which.is.eq('Not Found');
+        });
+
+        it('should be detectable via instanceOf', () => {
+
+            const appError = new ApplicationError({
+                code: 'E_NOT_FOUND',
+                error: new ApplicationError({
+                    code: 'E_INHERITED'
+                }),
+                message: 'NOT FOUND'
+            });
+
+            expect(appError).instanceOf(ApplicationError);
         });
     });
 
@@ -116,6 +142,18 @@ describe('SpeedUP|Standard-Error-Lib', () => {
             expect(httpError)
                 .to.have.property('statusMessage').that.is.a('string').which.is.eq('BAD_REQUEST');
         });
+
+        it('should be detectable via instanceOf', () => {
+
+            const httpError = new HttpError({
+                statusCode: 400,
+                statusMessage: 'BAD_REQUEST',
+                code: 'E_BAD_REQ',
+                isHandled: true,
+            });
+
+            expect(httpError).instanceOf(HttpError);
+        });
     });
 
     describe('MissingArgumentError', () => {
@@ -133,6 +171,13 @@ describe('SpeedUP|Standard-Error-Lib', () => {
                 .to.have.property('argumentName').that.is.a('string').which.is.eq('myArg');
             expect(missingArgumentError)
                 .to.have.property('message').that.is.a('string').which.is.eq('\'myArg\' is not provided (null or undefined).');
+        });
+
+        it('should be detectable via instanceOf', () => {
+
+            const missingArgumentError = new MissingArgumentError('myArg');
+
+            expect(missingArgumentError).instanceOf(MissingArgumentError);
         });
     });
 

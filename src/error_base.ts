@@ -53,5 +53,8 @@ export abstract class ErrorBase extends Error {
 
         // set stacktrace
         Error.captureStackTrace(this, ErrorBase);
+
+        // Set prototype to make instanceOf enabled
+        Object.setPrototypeOf(this, ErrorBase.prototype);
     }
 }

@@ -14,5 +14,8 @@ export class ApplicationError extends ErrorBase {
 
         // set stacktrace
         Error.captureStackTrace(this, ApplicationError);
+
+        // Set prototype to make instanceOf enabled
+        Object.setPrototypeOf(this, ApplicationError.prototype);
     }
 }
