@@ -20,7 +20,7 @@ export class MissingArgumentError extends ErrorBase {
     /**
      * Name of the argument
      */
-    protected readonly argumentName: string;
+    public readonly argumentName: string;
 
     constructor(argumentName?: string) {
 

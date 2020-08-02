@@ -27,7 +27,7 @@ export abstract class ErrorBase extends Error {
     /**
      * Error code
      */
-    protected readonly code: string | number;
+    public readonly code: string | number;
 
     /**
      * Human-friendly error message

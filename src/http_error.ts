@@ -27,17 +27,17 @@ export class HttpError extends ErrorBase {
     /**
      * HTTP status regarding the error
      */
-    protected readonly statusCode: number;
+    public readonly statusCode: number;
 
     /**
      * HTTP status message regarding the error
      */
-    protected readonly statusMessage: string | undefined;
+    public readonly statusMessage: string | undefined;
 
     /**
      * Is this a handled error
      */
-    protected readonly isHandled: boolean;
+    public readonly isHandled: boolean;
 
     constructor(config?: HttpErrorParameters) {
 

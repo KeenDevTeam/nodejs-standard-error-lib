@@ -173,6 +173,16 @@ describe('SpeedUP|Standard-Error-Lib', () => {
                 .to.have.property('message').that.is.a('string').which.is.eq('\'myArg\' is not provided (null or undefined).');
         });
 
+        it('should create an MissingArgumentError', () => {
+
+            const missingArgumentError = new MissingArgumentError('myArg');
+
+            expect(missingArgumentError)
+                .to.have.property('argumentName').that.is.a('string').which.is.eq('myArg');
+            expect(missingArgumentError)
+                .to.have.property('message').that.is.a('string').which.is.eq('\'myArg\' is not provided (null or undefined).');
+        });
+
         it('should be detectable via instanceOf', () => {
 
             const missingArgumentError = new MissingArgumentError('myArg');
