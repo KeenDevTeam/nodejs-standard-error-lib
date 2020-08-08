@@ -2,8 +2,7 @@
  * HTTP Bad request
  */
 
-import { HttpError } from './http_error';
-import { HttpErrorParameters } from '../dist/http_error';
+import { HttpError, HttpErrorParameters } from './http_error';
 
 export type HttpBadRequestParameters = HttpErrorParameters & {
 
