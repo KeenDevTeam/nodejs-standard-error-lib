@@ -7,6 +7,7 @@ import { expect } from 'chai';
 
 import * as mdl from '../src';
 import { ApplicationError } from '../src/application_error';
+import { HttpBadRequest } from '../src/http_bad_request';
 import { HttpError } from '../src/http_error';
 import { MissingArgumentError } from '../src/missing_argument_error';
 import { getDefaultErrorMessage, getEitherDefaultOrPredefinedErrorMessage } from '../src/util';
@@ -16,10 +17,10 @@ describe('SpeedUP|Standard-Error-Lib', () => {
 
     describe('integrity', () => {
 
-        it('should contain 4 properties', () => {
+        it('should contain 5 properties', () => {
 
             expect(mdl).to.be.an('object');
-            expect(Object.keys(mdl)).to.have.lengthOf(4);
+            expect(Object.keys(mdl)).to.have.lengthOf(5);
         });
     });
 
@@ -118,6 +119,51 @@ describe('SpeedUP|Standard-Error-Lib', () => {
             });
 
             expect(appError).instanceOf(ApplicationError);
+        });
+    });
+
+    describe('BadRequest', () => {
+
+        it('should throw E_NO_CONFIG exception', () => {
+
+            expect(() => new HttpBadRequest()).throws('E_NO_CONFIG');
+        });
+
+        it('should create an HttpBadRequest', () => {
+
+            const badRequestError = new HttpBadRequest({
+                statusCode: 400,
+                statusMessage: 'BAD_REQUEST',
+                code: 'E_BAD_REQ',
+                isHandled: true,
+                validationErrors: [
+                    {
+                        code: 'E_REQUIRED',
+                        field: 'id',
+                    }
+                ]
+            });
+
+            expect(badRequestError)
+                .to.have.property('statusCode').that.is.a('number').which.is.eq(400);
+            expect(badRequestError)
+                .to.have.property('statusMessage').that.is.a('string').which.is.eq('BAD_REQUEST');
+
+            expect(badRequestError)
+                .to.have.property('validationErrors').that.is.an('array').which.has.length(1);
+        });
+
+        it('should be detectable via instanceOf', () => {
+
+            const badRequestError = new HttpBadRequest({
+                statusCode: 400,
+                statusMessage: 'BAD_REQUEST',
+                code: 'E_BAD_REQ',
+                isHandled: true,
+                validationErrors: []
+            });
+
+            expect(badRequestError).instanceOf(HttpBadRequest);
         });
     });
 
